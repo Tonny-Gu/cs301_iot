@@ -1,0 +1,16 @@
+devmgr.cpp:26:11:Env_State get_env_state()	16	static
+devmgr.cpp:31:13:Motor_State get_motor_state()	4	static
+devmgr.cpp:36:11:LED_State get_led_state()	16	static
+devmgr.cpp:41:12:Node_State get_node_state()	16	static
+devmgr.cpp:46:6:void set_motor(Motor_State)	48	static
+devmgr.cpp:61:6:void set_led(LED_State)	48	static
+devmgr.cpp:84:6:void turn_led_on()	8	static
+devmgr.cpp:89:6:void turn_led_off()	16	static
+devmgr.cpp:95:6:void set_env(Env_State)	16	static
+devmgr.cpp:100:6:void set_node(Node_State)	16	static
+devmgr.cpp:105:6:)	16	static
+devmgr.cpp:114:7:char* get_debug_log_buf()	4	static
+devmgr.cpp:119:6:void clear_debug_log_buf()	8	static
+devmgr.cpp:125:9:uint8_t exec_spi_cmd(uint8_t*)	24	static
+devmgr.cpp:149:6:void reg_table_init()	4	static
+devmgr.cpp:167:6:void devmgr_init()	8	static

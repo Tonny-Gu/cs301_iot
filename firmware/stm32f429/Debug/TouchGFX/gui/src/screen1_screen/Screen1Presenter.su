@@ -1,0 +1,26 @@
+Presenter.hpp:42:18:virtual void touchgfx::Presenter::activate()	16	static
+Presenter.hpp:54:18:virtual void touchgfx::Presenter::deactivate()	16	static
+Presenter.hpp:65:13:touchgfx::Presenter::~Presenter()	16	static
+Presenter.hpp:65:13:virtual touchgfx::Presenter::~Presenter()	16	static
+Presenter.hpp:78:5:touchgfx::Presenter::Presenter()	16	static
+ModelListener.hpp:18:5:ModelListener::ModelListener()	16	static
+ModelListener.hpp:20:13:ModelListener::~ModelListener()	16	static
+ModelListener.hpp:20:13:virtual ModelListener::~ModelListener()	16	static
+ModelListener.hpp:22:18:virtual void ModelListener::setui_led(int, int, int)	24	static
+ModelListener.hpp:23:15:virtual void ModelListener::setui_vibrate(int)	16	static
+ModelListener.hpp:24:15:virtual void ModelListener::setui_env(int, int, int)	24	static
+ModelListener.hpp:25:15:virtual void ModelListener::setui_log_append(const char*)	16	static
+Screen1Presenter.hpp:28:13:Screen1Presenter::~Screen1Presenter()	16	static
+Screen1Presenter.hpp:28:13:virtual Screen1Presenter::~Screen1Presenter()	16	static
+Screen1Presenter.cpp:5:1:Screen1Presenter::Screen1Presenter(Screen1View&)	16	static
+Screen1Presenter.cpp:10:6:virtual void Screen1Presenter::activate()	16	static
+Screen1Presenter.cpp:15:6:virtual void Screen1Presenter::deactivate()	16	static
+Screen1Presenter.cpp:20:6:void Screen1Presenter::sethw_led_r(int)	16	static
+Screen1Presenter.cpp:25:6:void Screen1Presenter::sethw_led_g(int)	16	static
+Screen1Presenter.cpp:30:6:void Screen1Presenter::sethw_led_b(int)	16	static
+Screen1Presenter.cpp:35:6:void Screen1Presenter::sethw_motor(int)	16	static
+Screen1Presenter.cpp:40:6:void Screen1Presenter::sethw_automode(int)	16	static
+Screen1Presenter.cpp:45:6:virtual void Screen1Presenter::setui_log_append(const char*)	24	static
+Screen1Presenter.cpp:53:6:virtual void Screen1Presenter::setui_led(int, int, int)	24	static
+Screen1Presenter.cpp:58:6:virtual void Screen1Presenter::setui_vibrate(int)	16	static
+Screen1Presenter.cpp:63:6:virtual void Screen1Presenter::setui_env(int, int, int)	24	static

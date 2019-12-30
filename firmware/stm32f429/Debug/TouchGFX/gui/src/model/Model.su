@@ -1,0 +1,5 @@
+Model.cpp:13:1:Model::Model()	16	static
+Model.cpp:17:6:void Model::tick()	56	static
+Model.cpp:40:6:void Model::sethw_led(int, int, int)	32	static
+Model.cpp:51:6:void Model::sethw_motor(int)	24	static
+Model.cpp:60:6:void Model::sethw_automode(int)	24	static
