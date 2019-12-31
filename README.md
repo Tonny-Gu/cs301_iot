@@ -40,28 +40,73 @@
   - 编译环境: NodeMCU Cloud Build Service
   - 烧录工具: NodeMCU PyFlasher
   - Lua IDE: ESPlorer
+- Backend
+  - Framework: Spring Boot with Hibernate
+  - Build Tool: Maven
+- Frontend
+  - Framework: Vue.js
+
+### Architecture
+
+![pic10](doc/pic10.png)
+
+```mermaid
+graph BT
+
+Wire
+Internet
+
+subgraph STM32
+    STM32
+    LED -- PWM --- STM32
+    Motor -- PWM --- STM32
+    LCD -- LTDC&SPI --- STM32
+    SDRAM -- FMC --- STM32
+end
+
+subgraph ESP8266
+    ESP8266
+    DHT11 -- GPIO --- ESP8266
+    Ambi_sensor -- ADC --- ESP8266
+end
+
+subgraph Cloud Server
+    MQTT_Broker
+    Backend
+    Frontend
+
+    Frontend -- HTTP --- Backend
+    Backend -- MQTT --- MQTT_Broker
+end
+
+subgraph User
+	Browser
+end
+
+Frontend -- HTTP --- Internet
+Browser -- HTTP --- Internet
+MQTT_Broker -- MQTT --- Internet
+ESP8266 -- MQTT --- Internet
+ESP8266 -- SPI --- Wire
+STM32 -- SPI --- Wire
+
+```
 
 ## Implement
 
 ### GUI
 
-GUI使用了TouchGFX
+项目使用TouchGFX作为GUI。TouchGFX由ST官方支持，相较于LVGL等GUI库，TouchGFX在硬件加速上有更彻底的优化，更现代的UI设计工具，以及更现代的UI，如支持非线性动画。
 
-TouchGFXDesigner可用于绘制GUI，编译生成Simulator以及生成CubeIDE可用的代码
+TouchGFXDesigner可用于绘制GUI，编译生成Simulator以及生成CubeIDE可用的代码。
+
+TouchGFXDesigner生成的代码使用了MVP设计模式，控件包含了控件属性以及对应的虚函数的回调函数。
+
+TouchGFXDesigner也可以指定TouchGFX使用的字符集。
+
+TouchGFX支持FreeRTOS，并占用一个线程进行轮询以更新屏幕内容。
 
 ![pic9](doc/pic9.png)
-
-先添加控件，修改属性
-
-然后添加Interaction，使其生成虚函数的回调函数
-
-在Text选项卡中修改字符集
-
-即可生成代码
-
-生成的代码使用了MVP设计模式
-
-RTOS的一个线程会定时激活TouchGFX的线程，在这个过程中，Model里的代码会被调用
 
 ### GUI 2D加速
 
@@ -221,13 +266,33 @@ Example:
 }
 ```
 
-### 时间同步
+### 前端&后端
 
-NodeMCU会通过SNTP简单网络时间协议获得当前时间并产生准确的时间戳
+前端使用Vue.js，通过HTTP与后端通信以获取数据和发送命令
 
-SNTP的服务器地址：`203.107.6.88`
+后端使用Spring Boot with Hibernate框架，并采用Maven管理源码，这部分负责处理和保存原始数据。
 
-注：STM32的RTC外设并没有启用
+![pic11](doc/pic11.png)
+
+![pic12](doc/pic12.png)
+
+### 其他辅助技术
+
+#### SNTP
+
+NodeMCU会通过SNTP简单网络时间协议获得当前时间并产生准确的Unix时间戳
+
+#### SWV
+
+![pic13](doc/pic13.png)
+
+原版STLink/V2除了支持SW调试外，还支持增强的SWV调试。
+
+通过额外的SWO端口可以实时传输调试信息，在此之上实现了变量值实时刷新，虚拟串口，虚拟示波器等功能。
+
+在STM32F429IDISCO开发板上将SB9锡桥用电烙铁连接上即可启用SWV调试功能。
+
+![pic14](doc/pic14.png)
 
 ## Known issues
 
